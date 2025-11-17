@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import Footer from '../Components/Footer'
 
 import event1 from '../assets/event1.jpg'
@@ -67,7 +68,7 @@ const Events = () => {
 
 	return (
 		<>
-			<div className='py-12 bg-gray-50 relative'>
+			<div className=' bg-gray-50 relative'>
 				{/* ===== MODAL ===== */}
 				{selectedEvent && (
 					<div
@@ -94,37 +95,57 @@ const Events = () => {
 					</div>
 				)}
 
-				{/* ===== EVENTS GRID ===== */}
-				<div className='container mx-auto px-4'>
-					<h2 className='text-3xl font-semibold mb-8'>Our Events</h2>
+				{/* ==== FEATURED EVENTS ====== */}
+				<section className='py-16 px-4 bg-orange-500 text-white'>
+					<h2 className='text-3xl sm:text-4xl font-extrabold text-center pb-16'>Featured Events</h2>
 
-					<div className='grid md:grid-cols-2 gap-6'>
-						{eventsData.map((event) => (
+					<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto'>
+						{[eventsData[0], eventsData[1], eventsData[2]].map((event) => (
 							<div
 								key={event.id}
-								className='border rounded-lg overflow-hidden shadow hover:shadow-lg transition cursor-pointer'
 								onClick={() => setSelectedEvent(event)}
+								className='cursor-pointer'
 							>
-								<div className='h-48 overflow-hidden'>
+								<div className='group relative h-64 sm:h-72 md:h-80 rounded-3xl overflow-hidden shadow-2xl'>
 									<img
 										src={event.image}
 										alt={event.title}
-										className='w-full h-full object-cover transition-transform duration-300 hover:scale-105'
+										className='w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105'
 									/>
+									<div className='absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-25 transition pointer-events-none'></div>
 								</div>
+								<h3 className='font-bold text-xl mt-4 mb-2 text-center'>{event.title}</h3>
+							</div>
+						))}
+					</div>
+				</section>
 
-								<div className='p-4'>
-									<h3 className='font-bold text-xl mb-2'>{event.title}</h3>
+				{/* ===== OUR EVENTS GRID ===== */}
+				<div className='container mx-auto px-4 py-12'>
+					<h2 className='text-4xl font-extrabold text-center pb-10'>Our Events</h2>
 
-									<p className='text-gray-600 text-sm'>
-										{event.description.length > 100 ? event.description.slice(0, 100) + '...' : event.description}
-									</p>
-								</div>
+					<div className='grid md:grid-cols-2 gap-8'>
+						{eventsData.map((event) => (
+							<div
+								key={event.id}
+								onClick={() => setSelectedEvent(event)}
+								className='cursor-pointer'
+							>
+								<motion.div className='group relative h-64 sm:h-72 md:h-80 rounded-lg overflow-hidden shadow-2xl'>
+									<img
+										src={event.image}
+										alt={event.title}
+										className='w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105'
+									/>
+									<div className='absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-25 transition pointer-events-none' />
+								</motion.div>
+								<h3 className='font-bold text-2xl mt-4 pb-6 text-center'>{event.title}</h3>
 							</div>
 						))}
 					</div>
 				</div>
 			</div>
+
 			<Footer />
 		</>
 	)

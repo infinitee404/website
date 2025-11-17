@@ -13,7 +13,7 @@ function App() {
 				{/* Add top padding to avoid content hiding behind fixed navbar */}
 				<Routes>
 					<Route
-						path='/'
+						path='/website'
 						element={<Home />}
 					/>
 					<Route
