@@ -14,10 +14,10 @@ const Hero = () => {
 					Premium Event Photography & Cinematic Videography for Unforgettable Moments
 				</p>
 				<a
-					href='/portfolio'
+					href='#'
 					className='px-8 sm:px-10 py-4 bg-white text-orange-500 font-semibold rounded-2xl shadow-2xl hover:shadow-red-500/50 transition transform hover:-translate-y-1 inline-block'
 				>
-					Explore Portfolio
+					Explore Events
 				</a>
 			</motion.div>
 			<motion.div
